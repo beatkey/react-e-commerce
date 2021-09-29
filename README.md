@@ -1,4 +1,4 @@
-# [https://react-e-commerce-context.netlify.app/](Live Demo) 
+# [Live Demo](https://react-e-commerce-context.netlify.app/) 
 
 # Getting Started with Create React App
 
