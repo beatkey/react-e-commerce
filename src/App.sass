@@ -1,5 +1,39 @@
+@import url('https://oyunfiyatlari.com/assets/css/beatkey.css')
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
+
+$Color1: #8000FF
+$Color2: #8A9CC3
+$Color3: #0D1826
+$Color4: #00FF80
+$Color5: #7E91B9
+
+*
+   font-family: 'Poppins', sans-serif !important
+
+body
+   color: $Color3
+
+header
+   background-color: $Color3
+   nav
+      .NavItem
+         color: white
+         font-size: 1.1em
+         font-weight: 500
+         margin: 15px 0
+         background-color: $Color1
+         border-color: $Color1
+         &:hover
+            background-color: $Color2
+
 .Products
    padding: 10px
+
    .Product
       .ProductImage
          padding: 10px
+
+.Basket
+   .Item
+      box-shadow: unset
+      position: relative
