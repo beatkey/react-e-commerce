@@ -29,6 +29,14 @@ header nav .NavItem:hover {
 .Products .Product .ProductImage {
   padding: 10px;
 }
+.Products .Product .ProductImage img {
+  height: 450px;
+  object-fit: contain;
+}
+.Products .Product .ProductName {
+  height: 60px;
+  overflow: hidden;
+}
 
 .Basket .Item {
   box-shadow: unset;

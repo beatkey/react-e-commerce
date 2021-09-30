@@ -1,44 +1,38 @@
-import {Card, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
-import {useContext} from "react";
+import {Card, CardActions, CardContent, Typography} from '@mui/material';
+import {useContext, useEffect, useState} from "react";
 import {BasketContext} from "../../context/basket";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import LazyLoad from "react-lazyload";
+import {Image, Breathing} from 'react-shimmer'
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function Products() {
-    const products = [
-        {
-            productID: 1,
-            productName: "Samsung Galaxy A21s 64 GB",
-            productImage: "https://productimages.hepsiburada.net/s/40/1100/10669115965490.jpg/format:webp",
-            productPrice: "2.499,90"
-        },
-        {
-            productID: 2,
-            productName: "Reeder P13 Blue Max 64 GB",
-            productImage: "https://productimages.hepsiburada.net/s/88/1100/110000030397799.jpg/format:webp",
-            productPrice: "1.499,90"
-        },
-        {
-            productID: 3,
-            productName: "iPhone 11 128 GB",
-            productImage: "https://productimages.hepsiburada.net/s/49/1100/10995125452850.jpg/format:webp",
-            productPrice: "7.799,89"
-        },
-        {
-            productID: 4,
-            productName: "Apple iPad 8. Nesil 32 GB",
-            productImage: "https://productimages.hepsiburada.net/s/66/1100/110000007422695.jpg/format:webp",
-            productPrice: "3.139,90"
-        },
-        {
-            productID: 5,
-            productName: "Dyson Big Ball Allergy 2 Toz Torbasız",
-            productImage: "https://productimages.hepsiburada.net/s/55/550/11226865860658.jpg/format:webp",
-            productPrice: "2.899,00"
-        },
-    ];
-
+    const [products, setProducts] = useState([]);
     const [cart, setCart] = useContext(BasketContext);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await fetch("https://fakestoreapi.com/products");
+                const products = await res.json();
+                setProducts(products)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchProducts()
+        setTimeout(function (){
+            setLoading(false)
+        }, 1000)
+    }, [loading])
+
     const addToBasket = (productID) => {
-        setCart([...cart, products.find(x => x.productID === productID)])
+        setLoading(true)
+        setTimeout(function (){
+            setCart([...cart, products.find(x => x.id === productID)])
+        }, 1000)
     }
 
     return (
@@ -47,22 +41,30 @@ function Products() {
                 products.map((product, index) =>
                     <div key={index} className="Product col-3 p-2">
                         <Card>
-                            <CardMedia
-                                className="ProductImage"
-                                component="img"
-                                //image={product.productImage}
-                                alt={product.productName}
-                            />
+                            <LazyLoad className={"ProductImage"} height={200}>
+                                <Image
+                                    src={product.image}
+                                    fallback={<Breathing height={450}/>}
+                                />
+                            </LazyLoad>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {product.productName}
+                                <Typography className={"ProductName"} gutterBottom variant="h5" component="div">
+                                    {product.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {product.productPrice} TL
+                                    {product.price}$
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button onClick={() => addToBasket(product.productID)} variant="contained">Add To Basket</Button>
+                                <LoadingButton
+                                    onClick={() => addToBasket(product.id)}
+                                    startIcon={<AddShoppingCartIcon/>}
+                                    loading={loading}
+                                    loadingPosition="start"
+                                    variant="contained"
+                                >
+                                    Add To Basket
+                                </LoadingButton>
                             </CardActions>
                         </Card>
                     </div>

@@ -52,21 +52,21 @@ export default function Header() {
                 </ListItem>
                 <Divider/>
                 <List>
-                    {cart.map((text, index) => (
+                    {cart.map((product, index) => (
                         <Card key={index} className="Item p-2" sx={{display: 'flex'}}>
                             <CardMedia
                                 component="img"
-                                sx={{width: 128}}
-                                image={text.productImage}
-                                alt={text.productName}
+                                sx={{width: 128, objectFit: "contain"}}
+                                image={product.image}
+                                alt={product.title}
                             />
                             <Box sx={{display: 'flex', flexDirection: 'column'}}>
                                 <CardContent sx={{flex: '1 0 auto'}}>
                                     <Typography component="div" variant="h6">
-                                        {text.productName}
+                                        {product.title}
                                     </Typography>
                                     <Typography component="div" variant="body2">
-                                        {text.productPrice} TL
+                                        {product.price}$
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
