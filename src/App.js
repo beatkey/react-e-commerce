@@ -4,7 +4,7 @@ import Products from './components/products';
 import React from "react";
 import {BasketProvider} from "./context/basket";
 
-export default function App() {
+function App() {
     return (
         <BasketProvider>
             <div className="App">
@@ -14,3 +14,5 @@ export default function App() {
         </BasketProvider>
     );
 }
+
+export default App;
