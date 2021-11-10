@@ -1,16 +1,17 @@
-import './App.css';
-import Header from './components/header';
-import Products from './components/products';
 import React from "react";
+import './App.css';
 import {BasketProvider} from "./context/basket";
+import {Route, Routes} from "react-router-dom";
+import Home from "./containers/Home";
+import About from "./containers/About";
 
 function App() {
     return (
         <BasketProvider>
-            <div className="App">
-                <Header/>
-                <Products/>
-            </div>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="about" element={<About/>}/>
+            </Routes>
         </BasketProvider>
     );
 }

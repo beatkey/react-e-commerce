@@ -1,4 +1,4 @@
-import Product from "./product";
+import Product from "./Product";
 import {useContext, useEffect, useState} from "react";
 import {BasketContext} from "../../context/basket";
 

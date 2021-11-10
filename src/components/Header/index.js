@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {CardActions} from "@mui/material";
+import {Link} from "react-router-dom";
 
 export default function Header() {
     const [cart, setCart] = useContext(BasketContext);
@@ -101,7 +102,17 @@ export default function Header() {
 
     return (
         <header className="container-fluid">
-            <div className="row">
+            <div className="row align-items-center">
+                <div className="col-auto">
+                    <nav className="gap">
+                        <Button variant="contained" className="me-2">
+                            <Link to="/">Home</Link>
+                        </Button>
+                        <Button variant="contained">
+                            <Link to="/about">About</Link>
+                        </Button>
+                    </nav>
+                </div>
                 <nav className="col-auto ms-auto">
                     <Button onClick={basketDrawerToggle(true)} className="NavItem" variant="contained"
                             startIcon={<ShoppingBasketIcon/>}>
