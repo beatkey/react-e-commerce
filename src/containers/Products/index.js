@@ -21,7 +21,6 @@ function Products() {
     }
 
     const addToBasket = (productID) => {
-        console.log(productID)
         setTimeout(function () {
             setCart([...cart, products.find(x => x.id === productID)])
         }, 1000)
