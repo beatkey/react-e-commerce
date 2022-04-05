@@ -31,6 +31,7 @@ function Basket(props) {
     const {basketDrawer} = props;
 
     const deleteFromBasket = (basketID) => {
+        localStorage.setItem("cart", JSON.stringify(cart.filter((item, index) => index !== basketID)))
         setCart(cart.filter((item, index) => index !== basketID))
     }
 
@@ -70,7 +71,7 @@ function Basket(props) {
                             <TableCell align="right">
                                 {cart.reduce(function (sum, current) {
                                     return sum + current.price;
-                                }, 0)}
+                                }, 0).toFixed(2)}
                                 $
                             </TableCell>
                         </TableRow>

@@ -14,9 +14,11 @@ function Product(){
     const [cart, setCart] = useContext(BasketContext);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    useEffect(()=>{
         fetchProduct()
+    }, []);
 
+    useEffect(() => {
         setTimeout(function () {
             setLoading(false)
         }, 1000)
@@ -26,6 +28,7 @@ function Product(){
         try {
             const res = await fetch(`https://fakestoreapi.com/products/${params.productID}`);
             const product = await res.json();
+            document.title = product.title;
             setProduct(product)
         } catch (error) {
             console.log(error)
@@ -35,7 +38,6 @@ function Product(){
     const addToBasket = (product) => {
         setTimeout(function () {
             setCart([...cart, product])
-            console.log(cart)
         }, 1000)
     }
 

@@ -1,6 +1,6 @@
-import Product from "./Product";
 import {useContext, useEffect, useState} from "react";
 import {BasketContext} from "../../context/basket";
+import Product from "./Product";
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -8,6 +8,12 @@ function Products() {
 
     useEffect(() => {
         fetchProducts()
+
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        if(cart){
+            setCart(cart);
+        }
+        console.log(cart)
     }, [])
 
     const fetchProducts = async () => {
@@ -22,6 +28,7 @@ function Products() {
 
     const addToBasket = (productID) => {
         setTimeout(function () {
+            localStorage.setItem("cart", JSON.stringify([...cart, products.find(x => x.id === productID)]))
             setCart([...cart, products.find(x => x.id === productID)])
         }, 1000)
     }

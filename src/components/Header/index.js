@@ -10,7 +10,6 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 export default function Header() {
     const [cart] = useContext(BasketContext);
-
     const [basketDrawer, setBasketDrawer] = useState(false);
 
     const basketDrawerToggle = (open) => (event) => {
