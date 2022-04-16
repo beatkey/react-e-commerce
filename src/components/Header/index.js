@@ -34,6 +34,9 @@ export default function Header() {
                     </nav>
                 </div>
                 <nav className="col-auto ms-auto">
+                    <Button className="NavItem me-3" variant="contained">
+                        <Link to="/sign-in">Sign In</Link>
+                    </Button>
                     <Button onClick={basketDrawerToggle(true)} className="NavItem" variant="contained"
                             startIcon={<ShoppingBasketIcon/>}>
                         Basket ({cart.length})
