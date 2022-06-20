@@ -24,6 +24,8 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import {CardActions} from "@mui/material";
+import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom';
 
 function Basket(props) {
     const [cart, setCart] = useContext(BasketContext);
@@ -50,6 +52,12 @@ function Basket(props) {
                 </ListItemIcon>
                 <ListItemText primary="Close Basket"/>
             </ListItem>
+            <Divider/>
+            <Box className="m-2">
+                <Button variant="contained" className="w-100">
+                    <Link to="/checkout">Checkout</Link>
+                </Button>
+            </Box>
             <Divider/>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table">

@@ -10,6 +10,7 @@ import About from "./containers/About";
 import Product from "./containers/Product";
 import Account from './containers/Account';
 import SignIn from './containers/SignIn';
+import Checkout from './containers/Checkout';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="account" element={<Account/>}/>
                     <Route path="sign-in" element={<SignIn/>}/>
                     <Route path="product/:productID" element={<Product/>}/>
+                    <Route path="checkout" element={<Checkout/>}/>
                 </Routes>
             </LoggedInProvider>
         </BasketProvider>
