@@ -13,7 +13,6 @@ function Products() {
         if(cart){
             setCart(cart);
         }
-        console.log(cart)
     }, [])
 
     const fetchProducts = async () => {
