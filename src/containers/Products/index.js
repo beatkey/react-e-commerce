@@ -2,7 +2,8 @@ import {useContext, useEffect, useState} from "react";
 import {BasketContext} from "../../context/basket";
 import Product from "./Product";
 
-function Products() {
+function Products(props) {
+    const {view} = props;
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useContext(BasketContext);
 
@@ -36,7 +37,7 @@ function Products() {
         <div className="Products row m-1">
             {
                 products.map((product, index) =>
-                    <Product addToBasket={addToBasket} key={index} product={product}/>
+                    <Product view={view} addToBasket={addToBasket} key={index} product={product}/>
                 )
             }
         </div>

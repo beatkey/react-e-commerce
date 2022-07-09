@@ -54,9 +54,11 @@ function Basket(props) {
             </ListItem>
             <Divider/>
             <Box className="m-2">
-                <Button variant="contained" className="w-100">
-                    <Link to="/checkout">Checkout</Link>
-                </Button>
+                <Link to="/checkout">
+                    <Button variant="contained" className="w-100">
+                        Checkout
+                    </Button>
+                </Link>
             </Box>
             <Divider/>
             <TableContainer component={Paper}>
