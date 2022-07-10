@@ -23,6 +23,7 @@ function App() {
                     <Route path="sign-in" element={<SignIn/>}/>
                     <Route path="product/:productID" element={<Product/>}/>
                     <Route path="checkout" element={<Checkout/>}/>
+                    <Route path="category/:categoryName" element={<Home/>}/>
                 </Routes>
             </LoggedInProvider>
         </BasketProvider>

@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import React, {useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import Basket from './Basket';
 
 import {BasketContext} from '../../context/basket';
@@ -7,17 +7,15 @@ import {LoggedInContext} from '../../context/loggedIn';
 
 import Button from '@mui/material/Button';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import {TableRows, ViewComfy, ViewStream, ViewWeek} from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 
-export default function Header(props) {
-    let location = useLocation();
-    const {view, ChangeView} = props;
+export default function Header() {
     const [cart] = useContext(BasketContext);
     const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
     const [basketDrawer, setBasketDrawer] = useState(false);
+    const [categories, setCategories] = useState([])
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -40,49 +38,40 @@ export default function Header(props) {
         setLoggedIn(false);
     };
 
-    const ViewIcon = () => {
-        switch (view){
-            case 1:
-                return <ViewComfy />;
-                break;
-            case 2:
-                return <ViewWeek />;
-                break;
-            case 3:
-                return <ViewStream />;
-                break;
-            case 4:
-                return <TableRows />;
-                break;
-        }
-    };
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
-    console.log(loggedIn)
+    const fetchCategories = async () => {
+        try {
+            const res = await fetch("https://fakestoreapi.com/products/categories");
+            const data = await res.json();
+            setCategories(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <header className="container-fluid">
             <div className="row align-items-center">
                 <div className="col-auto">
-                    <nav className="gap">
+                    <nav className="gap d-flex">
                         <Link to="/">
                             <Button variant="contained" className="me-2">
                                 Home
                             </Button>
                         </Link>
-                        <Link to="/about">
-                            <Button variant="contained" className="me-2">
-                                About
-                            </Button>
-                        </Link>
-                        <div>
+                        <div className="me-2">
                             <Button
+                                variant="contained"
                                 id="basic-button"
                                 aria-controls={open ? 'basic-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                                 onClick={handleClick}
                             >
-                                Dashboard
+                                Categories
                             </Button>
                             <Menu
                                 id="basic-menu"
@@ -93,15 +82,20 @@ export default function Header(props) {
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                {
+                                    categories.map((value, key) =>
+                                        <Link key={key} to={`/category/${value}`}>
+                                            <MenuItem onClick={handleClose}>{value}</MenuItem>
+                                        </Link>
+                                    )
+                                }
                             </Menu>
                         </div>
-                        {location.pathname=="/" &&
-                        <Button onClick={() => ChangeView()} variant="contained" color="success" endIcon={<ViewIcon />}>
-                            View
-                        </Button> }
+                        <Link to="/about">
+                            <Button variant="contained" className="me-2">
+                                About
+                            </Button>
+                        </Link>
                     </nav>
                 </div>
                 <nav className="col-auto ms-auto">
