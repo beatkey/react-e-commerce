@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Basket from './Basket';
 
-import {useBasket, useAuth} from "../../context";
+import {useBasket, useAuth} from "context";
 
 import Button from '@mui/material/Button';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
@@ -89,6 +89,11 @@ export default function Header() {
                         <Link to="/about">
                             <Button variant="contained" className="me-2">
                                 About
+                            </Button>
+                        </Link>
+                        <Link to="/tabs">
+                            <Button variant="contained" className="me-2">
+                                Tabs
                             </Button>
                         </Link>
                     </nav>

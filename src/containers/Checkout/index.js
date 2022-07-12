@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Header from '../../components/Header';
-import {useBasket} from "../../context";
+import Header from 'components/Header';
+import {useBasket} from "context";
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

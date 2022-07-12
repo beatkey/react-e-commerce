@@ -1,5 +1,6 @@
 import React from "react";
-import {useBasket} from "../../../context";
+import {Link} from 'react-router-dom';
+import {useBasket} from "context";
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -25,7 +26,6 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import {CardActions} from "@mui/material";
 import Button from '@mui/material/Button';
-import {Link} from 'react-router-dom';
 
 function Basket(props) {
     const {basket, setBasket} = useBasket();

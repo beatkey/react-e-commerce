@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useBasket} from "../../context";
+import {useBasket} from "context";
 import Product from './Product';
 import {useParams} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {TableRows, ViewComfy, ViewStream, ViewWeek} from '@mui/icons-material';
-import LoadingSvg from '../../assets/svg/oval.svg';
+import LoadingSvg from 'assets/svg/oval.svg';
 
 function Products() {
     let {categoryName} = useParams();

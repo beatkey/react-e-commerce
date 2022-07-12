@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
-import Header from "../../components/Header";
+import Header from "components/Header";
 import {Breathing, Image} from "react-shimmer";
 import LazyLoad from "react-lazyload";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {useBasket} from "../../context";
+import {useBasket} from "context";
 
 function Product(){
     let params = useParams();

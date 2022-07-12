@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useAuth} from "../../context/Auth";
+import {useAuth} from "context/Auth";
 
-import Header from '../../components/Header';
+import Header from 'components/Header';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
