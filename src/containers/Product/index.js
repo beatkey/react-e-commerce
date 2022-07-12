@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -6,12 +6,12 @@ import {Breathing, Image} from "react-shimmer";
 import LazyLoad from "react-lazyload";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {BasketContext} from "../../context/basket";
+import {useBasket} from "../../context";
 
 function Product(){
     let params = useParams();
     const [product, setProduct] = useState([]);
-    const [cart, setCart] = useContext(BasketContext);
+    const {basket, setBasket} = useBasket();
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
@@ -37,7 +37,7 @@ function Product(){
 
     const addToBasket = (product) => {
         setTimeout(function () {
-            setCart([...cart, product])
+            setBasket([...basket, product])
         }, 1000)
     }
 

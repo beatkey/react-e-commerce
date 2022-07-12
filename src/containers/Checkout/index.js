@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import Header from '../../components/Header';
-import {BasketContext} from '../../context/basket';
+import {useBasket} from "../../context";
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,11 +15,11 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 
 function Checkout(){
-    const [cart, setCart] = useContext(BasketContext);
+    const {basket, setBasket} = useBasket();
 
     const deleteFromBasket = (basketID) => {
-        localStorage.setItem("cart", JSON.stringify(cart.filter((item, index) => index !== basketID)))
-        setCart(cart.filter((item, index) => index !== basketID))
+        localStorage.setItem("basket", JSON.stringify(basket.filter((item, index) => index !== basketID)))
+        setBasket(basket.filter((item, index) => index !== basketID))
     }
 
     return (
@@ -37,7 +37,7 @@ function Checkout(){
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {cart.map((row, index) => (
+                            {basket.map((row, index) => (
                                 <TableRow
                                     key={index}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -59,7 +59,7 @@ function Checkout(){
                                 <TableCell component="th" scope="row">
                                     Total Quantity
                                 </TableCell>
-                                <TableCell align="right">{cart.length}</TableCell>
+                                <TableCell align="right">{basket.length}</TableCell>
                             </TableRow>
                             <TableRow
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
@@ -68,7 +68,7 @@ function Checkout(){
                                     Total Price
                                 </TableCell>
                                 <TableCell align="right">
-                                    {cart.reduce(function (sum, current) {
+                                    {basket.reduce(function (sum, current) {
                                         return sum + current.price;
                                     }, 0).toFixed(2)}
                                     $

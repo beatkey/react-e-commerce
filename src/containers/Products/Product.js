@@ -58,7 +58,6 @@ function Product(props) {
                     </Card>
                 </div>
             )
-            break;
         case 2:
             return (
                 <div className="Product col-4 p-2">
@@ -96,7 +95,6 @@ function Product(props) {
                     </Card>
                 </div>
             )
-            break;
         case 3:
             return (
                 <div className="Product col-6 p-2">
@@ -134,7 +132,6 @@ function Product(props) {
                     </Card>
                 </div>
             )
-            break;
         case 4:
             return (
                 <div className="Product View col-12 p-2">
@@ -172,7 +169,8 @@ function Product(props) {
                     </Card>
                 </div>
             )
-            break;
+        default:
+            return ("default")
     }
 }
 

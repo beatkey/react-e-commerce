@@ -1,6 +1,6 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {LoggedInContext} from '../../context/loggedIn';
+import {useAuth} from "../../context/Auth";
 
 import Header from '../../components/Header';
 
@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import {Alert} from '@mui/material';
 
 function SignIn() {
-    const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
+    const {loggedIn, setLoggedIn} = useAuth();
     let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
@@ -25,14 +25,12 @@ function SignIn() {
         setErrorAlert(false)
         setSuccessAlert(false)
 
-        if(username=="emre" && password=="123"){
-            localStorage.setItem("logged-in", true)
+        if(username==="emre" && password==="123"){
             setLoggedIn(true)
             setSuccessAlert(true)
             navigate("/")
         }else{
             setErrorAlert(true)
-            localStorage.setItem("logged-in", false)
             setLoggedIn(false)
         }
     }

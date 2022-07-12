@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Basket from './Basket';
 
-import {BasketContext} from '../../context/basket';
-import {LoggedInContext} from '../../context/loggedIn';
+import {useBasket, useAuth} from "../../context";
 
 import Button from '@mui/material/Button';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
@@ -12,8 +11,8 @@ import Menu from '@mui/material/Menu';
 
 
 export default function Header() {
-    const [cart] = useContext(BasketContext);
-    const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
+    const {basket} = useBasket();
+    const {loggedIn, setLoggedIn} = useAuth();
     const [basketDrawer, setBasketDrawer] = useState(false);
     const [categories, setCategories] = useState([])
 
@@ -32,10 +31,6 @@ export default function Header() {
         }
 
         setBasketDrawer(open);
-    };
-
-    const Logout = () => {
-        setLoggedIn(false);
     };
 
     useEffect(() => {
@@ -100,7 +95,7 @@ export default function Header() {
                 </div>
                 <nav className="col-auto ms-auto">
                     {loggedIn
-                        ? <Button onClick={Logout} className="NavItem me-3" variant="contained">
+                        ? <Button onClick={() => setLoggedIn(false)} className="NavItem me-3" variant="contained">
                             Logout
                         </Button>
                         : <Link to="/sign-in">
@@ -111,7 +106,7 @@ export default function Header() {
                     }
                     <Button onClick={basketDrawerToggle(true)} className="NavItem" variant="contained"
                             startIcon={<ShoppingBasketIcon/>}>
-                        Basket ({cart.length})
+                        Basket ({basket.length})
                     </Button>
                 </nav>
             </div>

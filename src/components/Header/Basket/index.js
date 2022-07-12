@@ -1,5 +1,5 @@
-import React, {useContext} from "react";
-import {BasketContext} from "../../../context/basket";
+import React from "react";
+import {useBasket} from "../../../context";
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -28,13 +28,13 @@ import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 
 function Basket(props) {
-    const [cart, setCart] = useContext(BasketContext);
+    const {basket, setBasket} = useBasket();
     const {basketDrawerToggle} = props;
     const {basketDrawer} = props;
 
     const deleteFromBasket = (basketID) => {
-        localStorage.setItem("cart", JSON.stringify(cart.filter((item, index) => index !== basketID)))
-        setCart(cart.filter((item, index) => index !== basketID))
+        localStorage.setItem("basket", JSON.stringify(basket.filter((item, index) => index !== basketID)))
+        setBasket(basket.filter((item, index) => index !== basketID))
     }
 
     const list = () => (
@@ -70,7 +70,7 @@ function Basket(props) {
                             <TableCell component="th" scope="row">
                                 Total Quantity
                             </TableCell>
-                            <TableCell align="right">{cart.length}</TableCell>
+                            <TableCell align="right">{basket.length}</TableCell>
                         </TableRow>
                         <TableRow
                             sx={{'&:last-child td, &:last-child th': {border: 0}}}
@@ -79,7 +79,7 @@ function Basket(props) {
                                 Total Price
                             </TableCell>
                             <TableCell align="right">
-                                {cart.reduce(function (sum, current) {
+                                {basket.reduce(function (sum, current) {
                                     return sum + current.price;
                                 }, 0).toFixed(2)}
                                 $
@@ -89,7 +89,7 @@ function Basket(props) {
                 </Table>
             </TableContainer>
             <List>
-                {cart.map((product, index) => (
+                {basket.map((product, index) => (
                     <Card key={index} className="Item p-2" sx={{display: 'flex'}}>
                         <CardMedia
                             component="img"

@@ -1,8 +1,8 @@
 import React from "react";
 import './App.css';
 
-import {BasketProvider} from "./context/basket";
-import {LoggedInProvider} from "./context/loggedIn";
+import {BasketProvider, AuthProvider} from "./context";
+
 import {Route, Routes} from "react-router-dom";
 
 import Home from "./containers/Home";
@@ -15,7 +15,7 @@ import Checkout from './containers/Checkout';
 function App() {
     return (
         <BasketProvider>
-            <LoggedInProvider>
+            <AuthProvider>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="about" element={<About/>}/>
@@ -25,7 +25,7 @@ function App() {
                     <Route path="checkout" element={<Checkout/>}/>
                     <Route path="category/:categoryName" element={<Home/>}/>
                 </Routes>
-            </LoggedInProvider>
+            </AuthProvider>
         </BasketProvider>
     );
 }

@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {BasketContext} from '../../context/basket';
+import React, {useEffect, useState} from 'react';
+import {useBasket} from "../../context";
 import Product from './Product';
 import {useParams} from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -10,15 +10,15 @@ function Products() {
     let {categoryName} = useParams();
     const [view, setView] = useState(1);
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useContext(BasketContext);
+    const {basket, setBasket} = useBasket();
     const [sort, setSort] = useState(false);
 
     useEffect(() => {
         fetchProducts();
 
-        const cart = JSON.parse(localStorage.getItem('cart'));
-        if (cart) {
-            setCart(cart);
+        const basket = JSON.parse(localStorage.getItem('basket'));
+        if (basket) {
+            setBasket(basket);
         }
     }, [categoryName, sort]);
 
@@ -39,8 +39,8 @@ function Products() {
 
     const addToBasket = (productID) => {
         setTimeout(function () {
-            localStorage.setItem('cart', JSON.stringify([...cart, products.find(x => x.id === productID)]));
-            setCart([...cart, products.find(x => x.id === productID)]);
+            localStorage.setItem('basket', JSON.stringify([...basket, products.find(x => x.id === productID)]));
+            setBasket([...basket, products.find(x => x.id === productID)]);
         }, 1000);
     };
 
