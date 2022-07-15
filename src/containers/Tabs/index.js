@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-import {useGeneral} from "context";
-
 import Header from "components/Header";
 import Products from "../Products";
 import View from "components/Product/View"
-import Sort from "components/Product/Sort"
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
