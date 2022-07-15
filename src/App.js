@@ -1,7 +1,7 @@
 import React from "react";
 import 'App.css';
 
-import {BasketProvider, AuthProvider} from "context";
+import {BasketProvider, AuthProvider, GeneralProvider} from "context";
 
 import {Route, Routes} from "react-router-dom";
 
@@ -15,20 +15,22 @@ import Tabs from 'containers/Tabs';
 
 function App() {
     return (
-        <BasketProvider>
-            <AuthProvider>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="about" element={<About/>}/>
-                    <Route path="account" element={<Account/>}/>
-                    <Route path="sign-in" element={<SignIn/>}/>
-                    <Route path="product/:productID" element={<Product/>}/>
-                    <Route path="checkout" element={<Checkout/>}/>
-                    <Route path="category/:categoryName" element={<Home/>}/>
-                    <Route path="tabs" element={<Tabs/>}/>
-                </Routes>
-            </AuthProvider>
-        </BasketProvider>
+        <GeneralProvider>
+            <BasketProvider>
+                <AuthProvider>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="about" element={<About/>}/>
+                        <Route path="account" element={<Account/>}/>
+                        <Route path="sign-in" element={<SignIn/>}/>
+                        <Route path="product/:productID" element={<Product/>}/>
+                        <Route path="checkout" element={<Checkout/>}/>
+                        <Route path="category/:categoryName" element={<Home/>}/>
+                        <Route path="tabs" element={<Tabs/>}/>
+                    </Routes>
+                </AuthProvider>
+            </BasketProvider>
+        </GeneralProvider>
     );
 }
 

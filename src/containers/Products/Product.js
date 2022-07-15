@@ -1,16 +1,17 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
-import {Card, CardActions, CardContent, Typography} from "@mui/material";
+import {useGeneral} from "context";
 
 import LazyLoad from "react-lazyload";
 import {Breathing, Image} from "react-shimmer";
 
+import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 function Product(props) {
-    const {view} = props;
+    const {view} = useGeneral()
     const {product, addToBasket} = props;
     const [loading, setLoading] = useState(false);
 
